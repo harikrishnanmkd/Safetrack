@@ -1,0 +1,44 @@
+
+{% extends "admin/index.html" %}
+{% block body %}
+
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="/Safetrack/Editbus_POST/">
+    {% csrf_token %}
+<input type="hidden" name="id" class="form-control" value="{{ data1.id }}" REQUIRED/>
+  <table class="table table-bordered">
+    <tr>
+      <th scope="row">Bus Number </th>
+      <td><input type="text" name="textfield" class="form-control" value="{{ data1.Busnumber }}" REQUIRED/></td>
+    </tr>
+    <tr>
+      <th scope="row">Register Number </th>
+      <td><input type="text" name="textfield2" class="form-control"  value="{{ data1.Registrationnumber }}" REQUIRED/></td>
+    </tr>
+    <tr>
+      <th scope="row">Model</th>
+      <td><input type="text" name="textfield3" class="form-control" value="{{ data1.Model }}"  REQUIRED/></td>
+    </tr>
+    <tr>
+      <th scope="row">Driver</th>
+      <td><select name="select" onchange="check()" class="btn btn-light dropdown-toggle" style="width:206px;"  class="form-control" REQUIRED>
+              <option hidden="" value="{{ data1.Driver.id }}" >{{ data1.Driver.Name }}</option>
+
+          {% for i in data %}
+
+              <option value="{{ i.id }}" >{{ i.Name }}</option>
+
+          {% endfor %}
+
+      </select>
+      </td>
+    </tr>
+    <tr align="center">
+      <td colspan="2"><input type="submit" name="Submit" value="Save"  class="btn btn-success"/></td>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}

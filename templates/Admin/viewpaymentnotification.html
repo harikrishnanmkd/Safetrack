@@ -1,0 +1,42 @@
+
+{% extends "admin/index.html" %}
+{% block body %}
+
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="/Safetrack/viewpaymentnotification_post/#about">
+  {% csrf_token %}
+  <table class="pull-left">
+{#    <tr>#}
+{#      <th scope="col"><input type="text" name="textfield" /></th>#}
+{#      <th scope="col"><input type="submit" name="Submit" value="Search" class="btn btn-success" /></th>#}
+{#    </tr>#}
+  <table class="table table-bordered">
+  <tr>
+    <th scope="col">Slno</th>
+    <th scope="col">Date</th>
+    <th scope="col">Duedate</th>
+    <th scope="col">Month</th>
+    <th scope="col">Name</th>
+        <th scope="col">Class</th>
+    <th scope="col">Status</th>
+{#    <th colspan="2" scope="col">&nbsp;</th>#}
+    </tr>
+    {% for i in data %}
+  <tr>
+    <td>{{ forloop.counter }}&nbsp;</td>
+    <td>&nbsp;{{ i.Date }}&nbsp;</td>
+    <td>{{ i.Duedate }}&nbsp;</td>
+    <td>{{ i.Month }}&nbsp;</td>
+    <td>{{ i.Student.Name }}&nbsp;</td>
+    <td>{{ i.Student.Class }} {{ i.Student.Division }}&nbsp;</td>
+    <td>{{ i.Status}}</td>
+    <td><a href="/Safetrack/delete_paymentnotification/{{ i.id }} #about" class="btn btn-danger" onclick="return confirm('Are You Sure?')">Delete</a></td>
+  </tr>
+     {% endfor %}
+</table>
+
+</form>
+</body>
+{% endblock %}

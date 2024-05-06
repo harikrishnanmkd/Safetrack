@@ -1,0 +1,51 @@
+
+{% extends "admin/index.html" %}
+{% block body %}
+
+
+</head>
+
+<body><form action="/Safetrack/Viewstudent_post/#about" method="post"><table class="pull-left">
+    {% csrf_token %}
+  <tr>
+    <th scope="row"><input type="text" name="textfield" /></th>
+    <th><input type="submit" name="Submit" value="Search" class="btn btn-success" /></th>
+  </tr>
+    <br>
+    <br>
+</table><table class="table table-bordered">
+  <tr>
+    <th scope="row">Slno</th>
+    <th>Name</th>
+    <th>Photo</th>
+    <th>Class</th>
+    <th>Address</th>
+    <th>Guardian Name </th>
+    <th>Phone Number </th>
+    <th>Email</th>
+    <td colspan="2">&nbsp;</td>
+    </tr>
+    {% for i in data %}
+  <tr>
+    <th scope="row">{{ forloop.counter }}&nbsp;</th>
+    <td>&nbsp;{{ i.Name }}</td>
+    <td><img src="{{ i.Photo }}" height="100px" width="100px" alt=""/>&nbsp;</td>
+    <td>&nbsp;{{ i.Class }}- {{ i.Division }}</td>
+    <td>&nbsp;{{ i.Housename }}<br>{{ i.Place }}&nbsp;<br>{{ i.Pin }}<br>{{ i.Post }}</td>
+    <td>&nbsp;{{ i.Guardianname }}</td>
+    <td>&nbsp;{{ i.Phonenumber }}</td>
+    <td>&nbsp;{{ i.Email }}</td>
+    <td><a href="/Safetrack/Editstudent/{{ i.LOGIN.id }}#about" class="btn btn-info">Edit</a></td>
+    <td><a href="/Safetrack/delete_student/{{ i.LOGIN.id }}#about" class="btn btn-danger">Delete</a></td>
+      {% if i.allocated == 'No' %}
+    <td><a href="/Safetrack/Allocation/{{ i.id }}#about" class="btn btn-danger">Allocate</a></td>
+          {% else %}
+    <td><a href="#about" class="btn btn-light">BUS: {{ i.allocated }}</a></td>
+  {% endif %}
+  </tr>
+    {% endfor %}
+</table>
+
+</form>
+</body>
+{% endblock %}

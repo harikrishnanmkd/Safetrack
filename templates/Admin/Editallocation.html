@@ -1,0 +1,54 @@
+
+{% extends "admin/index.html" %}
+{% block body %}
+
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="/Safetrack/Editallocation_POST/">
+    {% csrf_token %}
+  <table class="table table-bordered">
+    <tr>
+    <input type="hidden" name="id" class="form-control" value="{{ data3.id }}" REQUIRED/>
+
+      <th scope="row">BUS</th>
+      <td><select name="select1" onchange="check()" class="btn btn-light dropdown-toggle" style="width:206px;"  class="form-control" REQUIRED>
+              <option hidden value="{{ data3.Bus.id }}">{{ data3.Bus.Busnumber }}</option>
+
+          {% for i in data %}
+              <option value="{{ i.id }}">{{ i.Busnumber }}</option>
+
+          {% endfor %}
+
+      </select>
+      </td>
+
+      <th scope="row">Class</th>
+      <td><select disabled>
+              <option >{{ data3.Student.Class }} - {{ data3.Student.Division }}</option>
+
+
+      </select>
+      </td>
+    </tr>
+
+{#    <tr>#}
+{#      <th scope="row">Student</th>#}
+{#      <td><select name="select" onchange="check()" class="btn btn-light dropdown-toggle" style="width:206px;"  class="form-control" REQUIRED>#}
+{#              <option value="{{ data3.Student.id }}">{{ data3.Student.Name }}</option>#}
+{##}
+{#          {% for i in data1 %}#}
+{#              <option value="{{ i.id }}">{{ i.Name }}</option>#}
+{##}
+{#          {% endfor %}#}
+{##}
+{#      </select>#}
+{#      </td>#}
+{#    </tr>#}
+    <tr align="center">
+      <td colspan="2"><input type="submit" name="Submit" value="Save"  class="btn btn-info"/></td>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}

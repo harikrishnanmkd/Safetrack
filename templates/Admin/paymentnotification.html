@@ -1,0 +1,40 @@
+
+{% extends "admin/index.html" %}
+{% block body %}
+
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="/Safetrack/sendpaymentnotification_POST/">
+    {% csrf_token %}
+  <table class="table table-bordered">
+    <tr>
+      <th scope="row">Due date </th>
+      <td><input type="date" name="textfield" min="{{ dt }}" class="form-control" REQUIRED/></td>
+    </tr>
+      <tr>
+      <th>Month</th>
+       <td><select name="select" id="check" onchange="check()" class="btn btn-light dropdown-toggle" style="width:206px;" required>
+          <option value="January">January</option>
+          <option value="February">February</option>
+          <option value="March">March</option>
+          <option value="April">April</option>
+          <option value="May">May</option>
+          <option value="June">June</option>
+          <option value="July">July</option>
+          <option value="August">August</option>
+          <option value="September">September</option>
+          <option value="October">October</option>
+          <option value="November">November</option>
+          <option value="December">December</option>
+      </select></td>
+    </tr>
+  <tr>
+
+    <tr align="center">
+      <td colspan="2"><input type="submit" name="Submit" value="Send"  class="btn btn-info"/></td>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}

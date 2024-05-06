@@ -1,0 +1,37 @@
+
+{% extends "admin/index.html" %}
+{% block body %}
+
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="/Safetrack/Viewallocation_POST/#about">
+  {% csrf_token %}
+  <table class="pull-left">
+    <tr>
+      <th scope="col"><input type="text" name="textfield" /></th>
+      <th scope="col"><input type="submit" name="Submit" value="Search" class="btn btn-success" /></th>
+    </tr>
+  <table class="table table-bordered">
+  <tr>
+    <th scope="col">Slno</th>
+    <th scope="col">BUS</th>
+    <th scope="col">Student</th>
+    <th scope="col">Class</th>
+{#    <th colspan="2" scope="col">&nbsp;</th>#}
+    </tr>
+    {% for i in data %}
+  <tr>
+    <td>{{ forloop.counter }}&nbsp;</td>
+    <td>&nbsp;{{ i.Bus.Busnumber }}&nbsp;</td>
+    <td>{{ i.Student.Name }}&nbsp;</td>
+    <td>{{ i.Student.Class }}{{i.Student.Division}}&nbsp;</td>
+    <td><a href="/Safetrack/Editallocation/{{ i.id }}#about" class="btn btn-info">Edit</a></td>
+    <td><a href="/Safetrack/delete_allocation/{{ i.id }} #about" class="btn btn-danger" onclick="return confirm('Are You Sure?')">Delete</a></td>
+  </tr>
+     {% endfor %}
+</table>
+
+</form>
+</body>
+{% endblock %}

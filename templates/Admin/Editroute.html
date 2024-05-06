@@ -1,0 +1,46 @@
+
+{% extends "admin/index.html" %}
+{% block body %}
+
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="/Safetrack/Editroute_POST/">
+    {% csrf_token %}
+  <table class="table table-bordered">
+    <tr>
+      <th scope="row">From Place </th>
+      <td>
+          <input type="hidden" name="id" class="form-control" value="{{ data1.id}}" REQUIRED/>
+          <input type="text" name="textfield" class="form-control" value="{{ data1.From_place}}" REQUIRED/>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">To Place </th>
+      <td><input type="text" name="textfield2" class="form-control" value="{{ data1.To_place}}" REQUIRED/></td>
+    </tr>
+
+   <tr>
+      <th scope="row">Amount</th>
+      <td><input type="number" name="textfield3" class="form-control" value="{{ data1.Amount }}" REQUIRED/></td>
+    </tr>
+    <tr>
+      <th scope="row">BUS</th>
+      <td><select name="select" onchange="check()" class="btn btn-light dropdown-toggle" style="width:206px;"  class="form-control" REQUIRED>
+              <option hidden value="{{ data1.Bus.id }}"  >{{data1.Bus.Busnumber }}</option>
+
+          {% for i in data %}
+              <option value="{{ i.id }}">{{ i.Busnumber }}</option>
+
+          {% endfor %}
+
+      </select>
+      </td>
+    </tr>
+    <tr align="center">
+      <td colspan="2"><input type="submit" name="Submit" value="Save"  class="btn btn-info"/></td>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}

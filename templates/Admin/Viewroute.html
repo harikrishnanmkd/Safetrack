@@ -1,0 +1,38 @@
+{% extends "admin/index.html" %}
+{% block body %}
+
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="/Safetrack/ViewRoute_POST/#about">
+  {% csrf_token %}
+  <table class="pull-left">
+    <tr>
+      <th scope="col"><input type="text" name="textfield" /></th>
+      <th scope="col"><input type="submit" name="Submit" value="Search" class="btn btn-success" /></th>
+    </tr>
+  <table class="table table-bordered">
+  <tr>
+    <th scope="col">Slno</th>
+    <th scope="col">Fromplace</th>
+    <th scope="col">Toplace</th>
+    <th scope="col">Amount</th>
+    <th scope="col">Bus</th>
+{#    <th colspan="2" scope="col">&nbsp;</th>#}
+    </tr>
+    {% for i in data %}
+  <tr>
+    <td>{{ forloop.counter }}&nbsp;</td>
+    <td>&nbsp;{{ i.From_place }}&nbsp;</td>
+    <td>{{ i.To_place }}&nbsp;</td>
+    <td>{{ i.Amount }}&nbsp;</td>
+    <td>{{ i.Bus.Busnumber }}&nbsp;</td>
+    <td><a href="/Safetrack/Editroute/{{ i.id }}#about" class="btn btn-info">Edit</a></td>
+    <td><a href="/Safetrack/delete_route/{{ i.id }} #about" class="btn btn-danger" onclick="return confirm('Are You Sure?')">Delete</a></td>
+  </tr>
+     {% endfor %}
+</table>
+
+</form>
+</body>
+{% endblock %}

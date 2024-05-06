@@ -1,0 +1,45 @@
+
+{% extends "admin/index.html" %}
+{% block body %}
+
+
+</head>
+
+<body><form action="/Safetrack/viewcomplaint_POST/#about" method="post"><table class="pull-left">
+    {% csrf_token %}
+  <tr>
+    <th scope="row"><label>From </label><input type="date" name="textfield1" /></th>
+    <th scope="row"><label>To</label><input type="date" name="textfield2" /></th>
+    <th><input type="submit" name="Submit" value="Search" class="btn btn-success" /></th>
+  </tr>
+    <br>
+    <br>
+</table><table class="table table-bordered">
+  <tr>
+    <th scope="row">Slno</th>
+
+    <th>Name</th>
+    <th>Date</th>
+    <th>Complaint</th>
+    <th>Reply </th>
+
+    </tr>
+    {% for i in data %}
+  <tr>
+    <th scope="row">{{ forloop.counter }}&nbsp;</th>
+    <td>&nbsp;{{ i.Student.Name }}</td>
+    <td>&nbsp;{{ i.Date }}</td>
+    <td>&nbsp;{{ i.complaint }}</td>
+
+      {% if i.Reply == 'Pending' %}
+    <td><a href="/Safetrack/sendreply/{{ i.id }}#about" class="btn btn-danger">Reply</a></td>
+          {% else %}
+    <td>{{ i.Reply }}</td>
+  {% endif %}
+  </tr>
+    {% endfor %}
+</table>
+
+</form>
+</body>
+{% endblock %}

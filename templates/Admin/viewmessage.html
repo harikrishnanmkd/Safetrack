@@ -1,0 +1,45 @@
+
+{% extends "admin/index.html" %}
+{% block body %}
+
+
+</head>
+
+<body><form action="/Safetrack/viewdrivermessage_POST/#about" method="post"><table class="pull-left">
+    {% csrf_token %}
+{#  <tr>#}
+{#    <th scope="row"><label>From </label><input type="date" name="textfield1" /></th>#}
+{#    <th scope="row"><label>To</label><input type="date" name="textfield2" /></th>#}
+{#    <th><input type="submit" name="Submit" value="Search" class="btn btn-success" /></th>#}
+{#  </tr>#}
+    <br>
+    <br>
+</table><table class="table table-bordered">
+  <tr>
+    <th scope="row">Slno</th>
+
+    <th>Date</th>
+      <th>Time</th>
+    <th>Message</th>
+    <th>Driver</th>
+    <th>BUS </th>
+
+
+
+    </tr>
+    {% for i in data %}
+  <tr>
+    <th scope="row">{{ forloop.counter }}&nbsp;</th>
+    <td>&nbsp;{{ i.Date }}</td>
+    <td>&nbsp;{{ i.Time }}</td>
+    <td>&nbsp;{{ i.Message }}</td>
+    <td>&nbsp;{{ i.Bus.Driver.Name }}</td>
+    <td>&nbsp;{{ i.Bus.Busnumber }}</td>
+
+  </tr>
+    {% endfor %}
+</table>
+
+</form>
+</body>
+{% endblock %}

@@ -1,0 +1,69 @@
+
+
+{% extends "admin/index.html" %}
+{% block body %}
+
+
+</head>
+
+<body><form action="/Safetrack/DriverRegistration_Post/" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+  <table class="table table-bordered">
+  <tr>
+    <th scope="row">Name</th>
+    <td><input type="text" name="textfield" class="form-control"  REQUIRED  /></td>
+  </tr>
+  <tr>
+    <th scope="row">HouseName</th>
+    <td><input type="text" name="textfield2" class="form-control" REQUIRED /></td>
+  </tr>
+  <tr>
+    <th scope="row">Place</th>
+    <td><input type="text" name="textfield3" class="form-control" REQUIRED/></td>
+  </tr>
+  <tr>
+    <th scope="row">Post</th>
+    <td><input type="text" name="textfield4" class="form-control" REQUIRED/></td>
+  </tr>
+  <tr>
+    <th scope="row">Pin</th>
+    <td><input type="text" name="textfield5" class="form-control" pattern="[6][0123456789]{5}" maxlength="6" REQUIRED/></td>
+  </tr>
+  <tr>
+    <th scope="row">Phone Number </th>
+    <td><input type="text" name="textfield6" class="form-control" pattern="[6789][0123456789]{9}" maxlength="10" REQUIRED/></td>
+  </tr>
+  <tr>
+    <th scope="row">Email</th>
+    <td><input type="email" name="textfield7" class="form-control" pattern="[a-z_0-9]{2,30}[@][a-z]{2,10}[.][a-z.]{2,20}" REQUIRED/></td>
+  </tr>
+   <tr>
+      <th>Experience</th>
+       <td><select name="select" id="check" onchange="check()" class="btn btn-light dropdown-toggle" style="width:206px;" required>
+          <option>--select--</option>
+          <option value="1Year">1Year</option>
+          <option value="2Year">2Year</option>
+          <option value="3Year">3Year</option>
+          <option value="4Year">4Year</option>
+          <option value="Above">Above</option>
+      </select></td>
+    </tr>
+  <tr>
+    <th scope="row">Photo </th>
+    <td><input type="file" accept="image/jpeg" name="file" class="form-control" REQUIRED/></td>
+  </tr>
+{#  <tr>#}
+{#    <th scope="row">Password</th>#}
+{#    <td><input type="text" name="textfield9" /></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">Confirm Password </th>#}
+{#    <td><input type="text" name="textfield10" /></td>#}
+{#  </tr>#}
+  <tr align="center">
+    <td colspan="2"><input name="ADD" type="submit" id="ADD" value="ADD" class="btn btn-success" /></td>
+  </tr>
+</table>
+</form>
+</body>
+{% endblock %}

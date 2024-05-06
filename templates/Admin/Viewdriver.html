@@ -1,0 +1,49 @@
+
+{% extends "admin/index.html" %}
+{% block body %}
+
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="/Safetrack/Searchdriver/#about">
+  {% csrf_token %}
+  <table class="pull-left">
+    <tr>
+      <th scope="col"><input type="text" name="textfield" /></th>
+      <th scope="col"><input type="submit" name="Submit" value="Search" class="btn btn-success" /></th>
+    </tr>
+  <table class="table table-bordered">
+  <tr>
+    <th scope="col">Slno</th>
+    <th scope="col">Name</th>
+    <th scope="col">Photo</th>
+    <th scope="col">Housename</th>
+    <th scope="col">Place</th>
+    <th scope="col">Post</th>
+    <th scope="col">Pin</th>
+    <th scope="col">Phonenumber</th>
+    <th scope="col">Email</th>
+    <th scope="col">Experience</th>
+    <th colspan="2" scope="col">&nbsp;</th>
+    </tr>
+    {% for i in data %}
+  <tr>
+    <td>{{ forloop.counter }}&nbsp;</td>
+    <td>&nbsp;{{ i.Name }}&nbsp;</td>
+    <td><img src="{{ i.Photo }}" height="100px" width="100px" alt=""/>&nbsp;</td>
+    <td>{{ i.Housename }}&nbsp;</td>
+    <td>{{ i.Place }}&nbsp;</td>
+    <td>&nbsp;{{ i.Post }}</td>
+    <td>&nbsp;{{ i.Pin }}</td>
+    <td>&nbsp;{{ i.Phonenumber }}</td>
+    <td>&nbsp;{{ i.Email }}</td>
+    <td>&nbsp;{{ i.Experience }}</td>
+    <td><a href="/Safetrack/Editdriver/{{ i.LOGIN.id }}#about" class="btn btn-info">Edit</a></td>
+    <td><a href="/Safetrack/delete_driver/{{ i.id }}#about" class="btn btn-danger">Delete</a></td>
+  </tr>
+     {% endfor %}
+</table>
+
+</form>
+</body>
+{% endblock %}

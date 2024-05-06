@@ -1,0 +1,47 @@
+
+{% extends "admin/index.html" %}
+{% block body %}
+
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="/Safetrack/Viewbus_POST/#about">
+  {% csrf_token %}
+  <table class="pull-left">
+    <tr>
+      <th scope="col"><input type="text" name="textfield" /></th>
+      <th scope="col"><input type="submit" name="Submit" value="Search" class="btn btn-success" /></th>
+    </tr>
+  <table class="table table-bordered">
+  <tr>
+    <th scope="col">Slno</th>
+    <th scope="col">Busnumber</th>
+    <th scope="col">Registrationnumber</th>
+    <th scope="col">Model</th>
+    <th scope="col">Driver</th>
+{#    <th colspan="2" scope="col">&nbsp;</th>#}
+    </tr>
+    {% for i in data %}
+  <tr>
+    <td>{{ forloop.counter }}&nbsp;</td>
+    <td>&nbsp;{{ i.Busnumber }}&nbsp;</td>
+    <td>{{ i.Registrationnumber }}&nbsp;</td>
+    <td>{{ i.Model }}&nbsp;</td>
+    <td>&nbsp;{{ i.Dname }}</td>
+     <td>
+         {% if i.Latitude != "" %}
+         <a href="https://maps.google.com/?q={{ i.Latitude }},{{ i.Longitude }}" class="btn btn-danger">Track</a>
+         {% else %}
+         Location not available
+         {% endif %}
+
+     </td>
+    <td><a href="/Safetrack/Editbus/{{ i.id }}#about" class="btn btn-info">Edit</a></td>
+    <td><a href="/Safetrack/delete_bus/{{ i.id }} #about" class="btn btn-danger" onclick="return confirm('Are You Sure?')">Delete</a></td>
+  </tr>
+     {% endfor %}
+</table>
+
+</form>
+</body>
+{% endblock %}

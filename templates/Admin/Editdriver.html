@@ -1,0 +1,70 @@
+
+
+{% extends "admin/index.html" %}
+{% block body %}
+
+
+</head>
+
+<body><form action="/Safetrack/Editdriver_POST/" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+  <table class="table table-bordered">
+  <tr>
+    <th scope="row">Name</th><input type="hidden" name="id" value="{{ data.LOGIN.id }}"  />
+    <td><input type="text" name="textfield" value="{{ data.Name }}" class="form-control"  REQUIRED  /></td>
+  </tr>
+  <tr>
+    <th scope="row">HouseName</th>
+    <td><input type="text" name="textfield2"  value="{{ data.Housename }}" class="form-control" REQUIRED /></td>
+  </tr>
+  <tr>
+    <th scope="row">Place</th>
+    <td><input type="text" name="textfield3" value="{{ data.Place }}" class="form-control" REQUIRED/></td>
+  </tr>
+  <tr>
+    <th scope="row">Post</th>
+    <td><input type="text" name="textfield4" value="{{ data.Post }}" class="form-control" REQUIRED/></td>
+  </tr>
+  <tr>
+    <th scope="row">Pin</th>
+    <td><input type="text" name="textfield5" value="{{ data.Pin }}" class="form-control" pattern="[6][0123456789]{5}" maxlength="6" REQUIRED/></td>
+  </tr>
+  <tr>
+    <th scope="row">Phone Number </th>
+    <td><input type="text" name="textfield6" value="{{ data.Phonenumber }}" class="form-control" pattern="[6789][0123456789]{9}" maxlength="10" REQUIRED/></td>
+  </tr>
+  <tr>
+    <th scope="row">Email</th>
+    <td><input type="email" name="textfield7" value="{{ data.Email }}" class="form-control" pattern="[a-z_0-9]{2,30}[@][a-z]{2,10}[.][a-z.]{2,20}" REQUIRED/></td>
+  </tr>
+   <tr>
+      <th>Experience</th>
+       <td><select name="select" id="check" onchange="check()" class="btn btn-light dropdown-toggle" style="width:206px;" required>
+          <option>--select--</option>
+          <option {% if data.Experience == "1Year" %} selected{% endif %} value="1Year">1Year</option>
+          <option  {% if data.Experience == "2Year" %} selected{% endif %} value="2Year">2Year</option>
+          <option  {% if data.Experience == "3Year" %} selected{% endif %} value="3Year">3Year</option>
+          <option  {% if data.Experience == "4Year" %} selected{% endif %} value="4Year">4Year</option>
+      </select></td>
+    </tr>
+  <tr>
+    <th scope="row">Photo </th>
+    <td>
+         <img src="{{ data.Photo }}" width="100px" height="100px"><br>
+        <input type="file" accept="image/jpeg" name="file" class="form-control" /></td>
+  </tr>
+{#  <tr>#}
+{#    <th scope="row">Password</th>#}
+{#    <td><input type="text" name="textfield9" /></td>#}
+{#  </tr>#}
+{#  <tr>#}
+{#    <th scope="row">Confirm Password </th>#}
+{#    <td><input type="text" name="textfield10" /></td>#}
+{#  </tr>#}
+  <tr align="center">
+    <td colspan="2"><input name="ADD" type="submit" id="ADD" value="SAVE" class="btn btn-success" /></td>
+  </tr>
+</table>
+</form>
+</body>
+{% endblock %}
